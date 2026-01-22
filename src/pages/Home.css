@@ -1,0 +1,150 @@
+/* ====== HOME CONTAINER ====== */
+.home {
+  padding: 0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* ====== HERO SECTION ====== */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6.25rem 8% 3.75rem; /* 100px 8% 60px → rem/% */
+  gap: 2.5rem; /* 40px → rem */
+  flex-wrap: wrap;
+}
+
+.hero-text h1 {
+  font-size: 3rem; /* 48px → rem */
+  margin-bottom: 0.9375rem; /* 15px → rem */
+}
+
+.hero-text p {
+  font-size: 1.25rem; /* 20px → rem */
+  color: #555;
+}
+
+.hero-img img {
+  width: 100%;
+  max-width: 28.125rem; /* 450px → rem */
+  height: auto;
+  border-radius: 0.75rem; /* 12px → rem */
+}
+
+/* ====== THREE IMAGES / CARDS SECTION ====== */
+.home-images {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.25rem; /* 20px → rem */
+  padding: 3.75rem 8%; /* 60px 8% → rem/% */
+  flex-wrap: wrap;
+}
+
+.image-card {
+  flex: 1;
+  min-width: 9.375rem; /* 150px → rem */
+  max-width: 15.625rem; /* 250px → rem */
+  background: #fff;
+  border-radius: 0.75rem; /* 12px → rem */
+  padding: 0.9375rem; /* 15px → rem */
+  text-align: center;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1); /* 4px 12px → rem */
+}
+
+.image-card img {
+  width: 100%;
+  height: 10rem; /* 160px → rem */
+  object-fit: cover;
+  border-radius: 0.75rem; /* 12px → rem */
+}
+
+.image-card h4 {
+  margin: 0.625rem 0 0.3125rem; /* 10px 0 5px → rem */
+  font-size: 1rem; /* 16px → rem */
+  color: #222;
+}
+
+.image-card p {
+  margin: 0.3125rem 0 0.625rem; /* 5px 0 10px → rem */
+  font-size: 0.875rem; /* 14px → rem */
+  color: #555;
+}
+
+/* ====== RESPONSIVE STYLING ====== */
+@media (max-width: 1024px) {
+  .hero {
+    padding: 5rem 6% 2.5rem; /* 80px 6% 40px → rem/% */
+    gap: 1.875rem; /* 30px → rem */
+  }
+  .hero-img img {
+    max-width: 21.875rem; /* 350px → rem */
+  }
+  .image-card {
+    max-width: 13.75rem; /* 220px → rem */
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 3.75rem 5% 2.5rem; /* 60px 5% 40px → rem/% */
+  }
+
+  .hero-img img {
+    width: 80%;
+    margin-bottom: 1.25rem; /* 20px → rem */
+  }
+
+  .home-images {
+    flex-direction: column;
+    gap: 1.875rem; /* 30px → rem */
+    padding: 2.5rem 5%; /* 40px 5% → rem/% */
+    align-items: center;
+  }
+
+  .image-card {
+    max-width: 18.75rem; /* 300px → rem */
+  }
+
+  .image-card p,
+  .order-btn,
+  .add-cart-btn {
+    font-size: 0.8125rem; /* 13px → rem */
+  }
+
+  .order-btn,
+  .add-cart-btn {
+    padding: 0.5rem 0; /* 8px → rem */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text h1 {
+    font-size: 1.625rem; /* 26px → rem */
+  }
+
+  .hero-text p {
+    font-size: 0.875rem; /* 14px → rem */
+  }
+
+  .hero-img img {
+    max-width: 16.25rem; /* 260px → rem */
+  }
+
+  .image-card img {
+    max-width: 13.75rem; /* 220px → rem */
+  }
+
+  .order-btn,
+  .add-cart-btn {
+    padding: 0.375rem 0; /* 6px → rem */
+    font-size: 0.75rem; /* 12px → rem */
+  }
+
+  .card-buttons {
+    flex-direction: column;
+    gap: 0.625rem; /* 10px → rem */
+  }
+}

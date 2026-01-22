@@ -1,0 +1,102 @@
+/* ===============================
+   FOOTER PAGE STYLING
+================================ */
+
+.footer {
+  background-color: #1f1f1f;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  width: 100%;
+}
+
+/* Top Section */
+.footer-top {
+  text-align: center;
+  padding: 2.5rem 1.25rem 1.25rem; /* 40px 20px 20px → rem */
+}
+
+.footer-top h2 {
+  font-size: 1.75rem; /* 28px → 1.75rem */
+  margin-bottom: 0.9375rem; /* 15px → rem */
+}
+
+.footer-top p {
+  font-size: 1rem; /* 16px → 1rem */
+  line-height: 1.6;
+  max-width: 75rem; /* 1200px → 75rem */
+  margin: 0 auto;
+}
+
+/* Content Section */
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  padding: 1.25rem 10%; /* 20px 10% → rem/% */
+  flex-wrap: wrap;
+  gap: 1.875rem; /* 30px → rem */
+}
+
+.footer-section h4 {
+  font-size: 1.125rem; /* 18px → 1.125rem */
+  margin-bottom: 0.625rem; /* 10px → rem */
+  text-transform: uppercase;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.5rem; /* 8px → rem */
+}
+
+.footer-section ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-section ul li a:hover {
+  color: #ff4c24;
+}
+
+.footer-section p {
+  margin-bottom: 0.5rem; /* 8px → rem */
+}
+
+/* Bottom Section */
+.footer-bottom {
+  text-align: center;
+  padding: 0.9375rem 0; /* 15px → rem */
+  background-color: #151515;
+  font-size: 0.875rem; /* 14px → rem */
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.25rem; /* 20px → rem */
+  }
+
+  .footer-top p {
+    font-size: 0.875rem; /* 14px → rem */
+  }
+
+  .footer-top h2 {
+    font-size: 1.5rem; /* 24px → rem */
+  }
+
+  .footer-section h4 {
+    font-size: 1rem; /* 16px → rem */
+  }
+
+  .footer-section ul li {
+    font-size: 0.875rem; /* 14px → rem */
+  }
+}

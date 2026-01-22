@@ -1,0 +1,67 @@
+/* ===============================
+   PRIVACY POLICY PAGE
+================================ */
+
+.privacy-container {
+  max-width: 56.25rem; /* 900px → rem */
+  margin: 3.75rem auto; /* 60px → rem */
+  padding: 2.5rem 1.875rem; /* 40px 30px → rem */
+  background-color: #ffffff;
+  border-radius: 0.75rem; /* 12px → rem */
+  box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.08); /* 10px 30px → rem */
+  font-family: Arial, sans-serif;
+}
+
+.privacy-title {
+  text-align: center;
+  font-size: 2.5rem; /* 40px → rem */
+  color: #ff6b6b;
+  margin-bottom: 1.25rem; /* 20px → rem */
+}
+
+.privacy-intro {
+  text-align: center;
+  font-size: 1rem; /* 16px → rem */
+  color: #555;
+  margin-bottom: 2.5rem; /* 40px → rem */
+  line-height: 1.6;
+}
+
+.privacy-section {
+  margin-bottom: 1.875rem; /* 30px → rem */
+}
+
+.privacy-section h3 {
+  font-size: 1.375rem; /* 22px → rem */
+  color: #333;
+  margin-bottom: 0.625rem; /* 10px → rem */
+  border-left: 0.25rem solid #ff6b6b; /* 4px → rem */
+  padding-left: 0.75rem; /* 12px → rem */
+}
+
+.privacy-section p {
+  font-size: 0.9375rem; /* 15px → rem */
+  color: #555;
+  line-height: 1.7;
+}
+
+.privacy-section ul {
+  padding-left: 1.25rem; /* 20px → rem */
+}
+
+.privacy-section ul li {
+  font-size: 0.9375rem; /* 15px → rem */
+  color: #555;
+  margin-bottom: 0.5rem; /* 8px → rem */
+}
+
+/* Responsive */
+@media (max-width: 37.5rem) { /* 600px → rem */
+  .privacy-container {
+    padding: 1.5625rem 1.25rem; /* 25px 20px → rem */
+  }
+
+  .privacy-title {
+    font-size: 2rem; /* 32px → rem */
+  }
+}

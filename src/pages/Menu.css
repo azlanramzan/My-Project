@@ -1,0 +1,216 @@
+.menu-container {
+  padding: 2.5rem 8%; /* 40px → rem */
+  font-family: Arial, sans-serif;
+}
+
+.menu-title {
+  text-align: center;
+  margin-bottom: 3.75rem; /* 60px → rem */
+  font-size: 2.625rem; /* 42px → rem */
+  color: #ff6b6b;
+  position: relative;
+  display: inline-block;
+}
+
+.menu-title::after {
+  content: "";
+  display: block;
+  width: 60%;
+  height: 0.25rem; /* 4px → rem */
+  background-color: #1dd1a1;
+  margin: 0.5rem auto 0;
+  border-radius: 0.125rem; /* 2px → rem */
+}
+
+/* First row with 2 items + center decor */
+.menu-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 1.25rem; /* 20px → rem */
+  flex-wrap: wrap;
+  margin-bottom: 3.75rem;
+}
+
+/* Center decor box */
+.menu-center-decor {
+  flex: 0 0 calc(2 * 15.625rem + 1.25rem); /* double width of a card + gap */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 0.75rem; /* 12px → rem */
+  padding: 1.25rem; /* 20px → rem */
+  background-image: url('../assets/your-background-image.png'); /* replace with your image */
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 0.5rem 1.25rem rgba(0,0,0,0.2); /* 8px 20px → rem */
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.menu-center-content h3 {
+  font-size: 1.5rem; /* 24px → rem */
+  margin-bottom: 0.9375rem; /* 15px → rem */
+  color: #ff6b6b;
+  text-shadow: 0.0625rem 0.0625rem 0.3125rem rgba(0,0,0,0.4); /* 1px 1px 5px → rem */
+}
+
+.menu-center-content p {
+  font-size: 1rem; /* 16px → rem */
+  color: #f0adad;
+  line-height: 1.6;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.menu-center-content p span {
+  opacity: 0;
+  transform: translateY(0.625rem); /* 10px → rem */
+  display: inline-block;
+  animation: fadeInWord 0.5s forwards;
+}
+
+@keyframes fadeInWord {
+  0% {
+    opacity: 0;
+    transform: translateY(0.625rem) scale(0.95);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-0.125rem) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Remaining items */
+.menu-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  justify-content: flex-start;
+}
+
+.menu-card {
+  flex: 1;
+  min-width: 12.5rem; /* 200px → rem */
+  max-width: 15.625rem; /* 250px → rem */
+  background: #fff;
+  border-radius: 0.75rem; /* 12px → rem */
+  padding: 0.9375rem; /* 15px → rem */
+  text-align: center;
+  box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.menu-card:hover {
+  transform: translateY(-0.3125rem); /* 5px → rem */
+}
+
+.menu-image {
+  width: 100%;
+  height: 10rem; /* 160px → rem */
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
+
+.menu-name {
+  margin: 0.625rem 0 0.3125rem;
+  font-size: 1rem; /* 16px → rem */
+  color: #222;
+}
+
+.menu-description {
+  font-size: 0.875rem; /* 14px → rem */
+  color: #555;
+  margin: 0.3125rem 0 0.625rem;
+}
+
+.menu-price {
+  font-weight: bold;
+  margin-bottom: 0.625rem;
+}
+
+.menu-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.625rem;
+}
+
+.menu-order-btn,
+.menu-add-cart-btn {
+  flex: 1;
+  padding: 0.5rem; /* 8px → rem */
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.menu-order-btn {
+  background-color: #ff6b6b;
+  color: white;
+}
+
+.menu-add-cart-btn {
+  background-color: #1dd1a1;
+  color: white;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 64rem) { /* 1024px → rem */
+  .menu-card {
+    max-width: 13.75rem; /* 220px → rem */
+  }
+  .menu-center-decor {
+    flex: 0 0 calc(2 * 13.75rem + 1.25rem);
+    padding: 0.9375rem;
+  }
+}
+
+@media (max-width: 48rem) { /* 768px → rem */
+  .menu-row,
+  .menu-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu-card {
+    max-width: 18.75rem; /* 300px → rem */
+  }
+
+  .menu-description,
+  .menu-order-btn,
+  .menu-add-cart-btn {
+    font-size: 0.8125rem; /* 13px → rem */
+  }
+
+  .menu-center-decor {
+    margin: 1.25rem 0;
+    width: 90%;
+  }
+}
+
+@media (max-width: 30rem) { /* 480px → rem */
+  .menu-image {
+    max-width: 13.75rem; /* 220px → rem */
+  }
+
+  .menu-order-btn,
+  .menu-add-cart-btn {
+    padding: 0.375rem 0;
+    font-size: 0.75rem; /* 12px → rem */
+  }
+
+  .menu-buttons {
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+}

@@ -1,0 +1,25 @@
+.page-container {
+  padding-top: 6.25rem; /* 100px → rem for spacing below fixed navbar */
+  padding-left: 1.25rem; /* 20px → rem */
+  padding-right: 1.25rem; /* 20px → rem */
+  font-family: Arial, sans-serif;
+  text-align: left;
+  max-width: 1200px; /* optional: center content on large screens */
+  margin: 0 auto; /* center horizontally */
+}
+
+/* Optional: responsive adjustment for small screens */
+@media (max-width: 48rem) { /* 768px → rem */
+  .page-container {
+    padding-left: 0.75rem; /* 12px → rem */
+    padding-right: 0.75rem; /* 12px → rem */
+  }
+}
+
+@media (max-width: 30rem) { /* 480px → rem */
+  .page-container {
+    padding-left: 0.5rem; /* 8px → rem */
+    padding-right: 0.5rem; /* 8px → rem */
+    padding-top: 4rem; /* 64px → rem */
+  }
+}

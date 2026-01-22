@@ -1,0 +1,21 @@
+
+/* Reset margins and paddings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body global styles */
+body {
+  font-family: Arial, sans-serif;
+  text-align: left; /* ✅ default left alignment for all pages */
+  background-color: #f4f4f4;
+}
+
+/* Global container for page content (optional) */
+.page-wrapper {
+  padding-top: 100px; /* space for fixed navbar */
+  padding-left: 20px;
+  padding-right: 20px;
+}
