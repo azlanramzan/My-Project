@@ -1,11 +1,17 @@
-import React from "react";
-import { assets, food_list } from "../assets/assets";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
 import "./Cart.css";
 import Footer from "./Footer";
 
 const Cart = () => {
-  // For demo, let's assume first 5 items are in cart
-  const cartItems = food_list.slice(0, 5);
+  const { cartItems, removeFromCart, updateQuantity, getTotal } = useContext(CartContext);
+  const navigate = useNavigate();
+
+  const handleProceedToCheckout = () => {
+    if (cartItems.length === 0) return;
+    navigate("/place-order", { state: { cartItems } });
+  };
 
   return (
     <div className="cart-page">
@@ -13,31 +19,24 @@ const Cart = () => {
 
       {cartItems.length === 0 ? (
         <div className="empty-cart">
-          <img src={assets.basket_icon} alt="Empty Cart" />
           <p>Your cart is empty</p>
         </div>
       ) : (
         <div className="cart-items">
           {cartItems.map((item) => (
             <div className="cart-card" key={item._id}>
-              <div className="cart-image">
-                <img src={item.image} alt={item.name} />
-              </div>
               <div className="cart-info">
                 <h3>{item.name}</h3>
                 <p>{item.description}</p>
                 <div className="cart-quantity">
-                  <button className="remove-btn">
-                    <img src={assets.remove_icon_red} alt="Remove" />
-                  </button>
-                  <span>1</span>
-                  <button className="add-btn">
-                    <img src={assets.add_icon_green} alt="Add" />
-                  </button>
+                  <button onClick={() => updateQuantity(item._id, -1)}>-</button>
+                  <span>{item.quantity}</span>
+                  <button onClick={() => updateQuantity(item._id, 1)}>+</button>
+                  <button onClick={() => removeFromCart(item._id)}>Remove</button>
                 </div>
               </div>
               <div className="cart-price">
-                <h4>${item.price}</h4>
+                <h4>${item.price * item.quantity}</h4>
               </div>
             </div>
           ))}
@@ -49,10 +48,7 @@ const Cart = () => {
           <h2>Order Summary</h2>
           <div className="summary-row">
             <span>Subtotal</span>
-            <span>
-              $
-              {cartItems.reduce((acc, item) => acc + item.price, 0)}
-            </span>
+            <span>${getTotal()}</span>
           </div>
           <div className="summary-row">
             <span>Delivery</span>
@@ -60,17 +56,15 @@ const Cart = () => {
           </div>
           <div className="summary-row total">
             <span>Total</span>
-            <span>
-              $
-              {cartItems.reduce((acc, item) => acc + item.price, 0) + 5}
-            </span>
+            <span>${getTotal() + 5}</span>
           </div>
-          <button className="checkout-btn">Proceed to Checkout</button>
+          <button className="checkout-btn" onClick={handleProceedToCheckout}>
+            Proceed to Checkout
+          </button>
         </div>
       )}
-      <div className="home">
-        <Footer />
-      </div>
+
+      <Footer />
     </div>
   );
 };

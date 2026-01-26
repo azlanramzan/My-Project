@@ -1,0 +1,4 @@
+/* Reserve space for top navbar + second navbar */
+.main-content {
+  padding-top: 120px; /* adjust if your second navbar is taller/shorter */
+}

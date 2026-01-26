@@ -168,7 +168,17 @@
   font-size: 1rem; /* 16px → 1rem */
   color: #555;
   margin-bottom: 1.5625rem; /* 25px → 1.5625rem */
+}.step-link {
+  text-decoration: none;
+  color: tomato; /* changed to tomato */
+  cursor: pointer;
+  transition: color 0.2s;
 }
+
+.step-link:hover {
+  color: #e5533d; /* slightly darker tomato on hover */
+}
+
 
 /* ===============================
    RESPONSIVE

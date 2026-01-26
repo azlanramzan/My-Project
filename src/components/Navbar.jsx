@@ -1,12 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { assets } from "../assets/assets";
+import { CartContext } from "../context/CartContext";
 import "./Navbar.css";
 
 const Navbar = () => {
+  const { cartItems } = useContext(CartContext);
   const [searchQuery, setSearchQuery] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [openHamburger, setOpenHamburger] = useState(false);
+  const [bounce, setBounce] = useState(false);
+  const [hideNav, setHideNav] = useState(false); // new state
+  const [lastScrollY, setLastScrollY] = useState(0); // track last scroll
+
+  // Bounce animation for cart
+  useEffect(() => {
+    if (cartItems.length > 0) {
+      setBounce(true);
+      const timer = setTimeout(() => setBounce(false), 300);
+      return () => clearTimeout(timer);
+    }
+  }, [cartItems]);
+
+  // Scroll hide/show logic
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // scrolling down
+        setHideNav(true);
+      } else {
+        // scrolling up
+        setHideNav(false);
+      }
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -14,6 +47,8 @@ const Navbar = () => {
     setSearchQuery("");
     setShowSearch(false);
   };
+
+  const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
     <>
@@ -25,17 +60,19 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Desktop buttons */}
         <div className="navbar-actions">
           <Link to="/login">
             <button className="login-btn">Login</button>
           </Link>
-          <Link to="/cart" className="cart-btn">
+          <Link
+            to="/cart"
+            className={`cart-btn ${bounce ? "bounce" : ""}`}
+          >
             <img src={assets.basket_icon} alt="Cart" />
+            {totalItems > 0 && <span className="cart-count">{totalItems}</span>}
           </Link>
         </div>
 
-        {/* Hamburger (tablet & mobile) */}
         <div
           className="hamburger"
           onClick={() => setOpenHamburger(!openHamburger)}
@@ -44,20 +81,15 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Hamburger dropdown */}
       {openHamburger && (
         <div className="hamburger-menu">
-          <Link to="/login" onClick={() => setOpenHamburger(false)}>
-            Login
-          </Link>
-          <Link to="/cart" onClick={() => setOpenHamburger(false)}>
-            Cart
-          </Link>
+          <Link to="/login" onClick={() => setOpenHamburger(false)}>Login</Link>
+          <Link to="/cart" onClick={() => setOpenHamburger(false)}>Cart ({totalItems})</Link>
         </div>
       )}
 
       {/* ================= SECOND NAVBAR ================= */}
-      <nav className="navbar-bottom">
+      <nav className={`navbar-bottom ${hideNav ? "hide" : ""}`}>
         <div className="navbar-bottom-inner">
           <Link to="/">Home</Link>
           <Link to="/menu">Menu</Link>
@@ -65,7 +97,6 @@ const Navbar = () => {
           <Link to="/delivery">Delivery</Link>
           <Link to="/privacy">Privacy</Link>
 
-          {/* Search icon */}
           <span
             className="search-icon"
             onClick={() => setShowSearch(!showSearch)}
@@ -74,7 +105,6 @@ const Navbar = () => {
           </span>
         </div>
 
-        {/* Search input */}
         {showSearch && (
           <form className="navbar-search" onSubmit={handleSearch}>
             <input

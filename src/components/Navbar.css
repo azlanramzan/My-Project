@@ -66,12 +66,18 @@
 
 /* ================= SECOND NAVBAR ================= */
 .navbar-bottom {
-  position: fixed;
-  top: 70px;
-  width: 100%;
-  background: #fafafa;
+  position: relative; /* keeps navbar at top */
+  top: 70px; /* below top navbar */
+  /* width: 50% ; */
+  /* background: #fafafa; */
   border-top: 1px solid #eee;
-  z-index: 900;
+  /* z-index: 900; */
+  transition: top 0.3s ease; /* smooth hide/show */
+
+}
+
+.navbar-bottom.hide {
+  top: 0; /* hides behind top navbar */
 }
 
 .navbar-bottom-inner {
@@ -85,11 +91,15 @@
 
 .navbar-bottom-inner a {
   text-decoration: none;
-  color: #333;
+  color: #f44336;
   font-weight: 500;
   white-space: nowrap;
+  font-weight: bold;
 }
-
+.navbar-bottom-inner a:hover {
+  color: #ff6347;         /* slightly darker tomato on hover */
+  transform: scale(1.1);  /* slight grow effect */
+}
 .search-icon {
   cursor: pointer;
   font-size: 18px;
@@ -111,6 +121,39 @@
 .navbar-search button {
   padding: 8px 14px;
   cursor: pointer;
+}
+
+/* Cart Button */
+.cart-btn {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #f44336; /* red circle */
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+/* Bounce animation */
+@keyframes bounceAnim {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.3); }
+  50% { transform: scale(1); }
+  70% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.cart-btn.bounce {
+  animation: bounceAnim 0.3s ease;
 }
 
 /* ================= RESPONSIVE ================= */

@@ -180,3 +180,79 @@
     font-size: 0.9375rem; /* 15px */
   }
 }
+/* Cart Quantity Controls */
+.cart-quantity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.cart-quantity button {
+  background-color: #4caf50; /* green for + */
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  font-size: 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cart-quantity button:hover {
+  transform: scale(1.1);
+}
+
+/* Style for the "-" button */
+.cart-quantity button:first-child {
+  background-color: #f44336; /* red for - */
+}
+
+/* Quantity number */
+.cart-quantity span {
+  font-size: 16px;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Remove button */
+.cart-quantity button.remove-btn {
+  background-color: #ff9800; /* orange for remove */
+  padding: 4px 10px;
+  font-size: 14px;
+}
+
+.cart-quantity button.remove-btn:hover {
+  background-color: #e68900;
+}
+
+/* Cart Card Layout */
+.cart-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 12px 0;
+}
+
+.cart-info h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.cart-price h4 {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Optional: Make cart responsive */
+@media (max-width: 768px) {
+  .cart-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .cart-price {
+    align-self: flex-end;
+  }
+}

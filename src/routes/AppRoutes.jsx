@@ -8,7 +8,7 @@ import CreateAccount from "../pages/CreateAccount";
 import Cart from "../pages/Cart";
 import Delivery from "../pages/Delivery";
 import Privacy from "../pages/Privacy";
-
+import PlaceOrder from "../pages/PlaceOrder";
 const AppRoutes = () => {
   return (
     <Routes>
@@ -20,7 +20,7 @@ const AppRoutes = () => {
       <Route path="/cart" element={<Cart />} />
       <Route path="/delivery" element={<Delivery />} />
       <Route path="/privacy" element={<Privacy />} />
-
+<Route path="/place-order" element={<PlaceOrder />} />
       {/* Redirect unknown routes to login */}
       <Route path="*" element={<Navigate to="/login" />} />
     </Routes>
