@@ -10,10 +10,10 @@ const Navbar = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [openHamburger, setOpenHamburger] = useState(false);
   const [bounce, setBounce] = useState(false);
-  const [hideNav, setHideNav] = useState(false); // new state
-  const [lastScrollY, setLastScrollY] = useState(0); // track last scroll
+  const [hideNav, setHideNav] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
-  // Bounce animation for cart
+  // Cart bounce animation
   useEffect(() => {
     if (cartItems.length > 0) {
       setBounce(true);
@@ -22,22 +22,18 @@ const Navbar = () => {
     }
   }, [cartItems]);
 
-  // Scroll hide/show logic
+  // Scroll hide/show
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // scrolling down
         setHideNav(true);
       } else {
-        // scrolling up
         setHideNav(false);
       }
       setLastScrollY(currentScrollY);
     };
-
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
@@ -52,59 +48,52 @@ const Navbar = () => {
 
   return (
     <>
-      {/* ================= TOP NAVBAR ================= */}
-      <nav className="navbar-top">
-        <div className="navbar-logo">
+      <nav className={`navbar ${hideNav ? "hide" : ""}`}>
+        {/* Left: Logo */}
+        <div className="navbar-left">
           <Link to="/">
             <img src={assets.logo} alt="Logo" />
           </Link>
         </div>
 
-        <div className="navbar-actions">
-          <Link to="/login">
-            <button className="login-btn">Login</button>
-          </Link>
-          <Link
-            to="/cart"
-            className={`cart-btn ${bounce ? "bounce" : ""}`}
-          >
-            <img src={assets.basket_icon} alt="Cart" />
-            {totalItems > 0 && <span className="cart-count">{totalItems}</span>}
-          </Link>
-        </div>
-
-        <div
-          className="hamburger"
-          onClick={() => setOpenHamburger(!openHamburger)}
-        >
-          ☰
-        </div>
-      </nav>
-
-      {openHamburger && (
-        <div className="hamburger-menu">
-          <Link to="/login" onClick={() => setOpenHamburger(false)}>Login</Link>
-          <Link to="/cart" onClick={() => setOpenHamburger(false)}>Cart ({totalItems})</Link>
-        </div>
-      )}
-
-      {/* ================= SECOND NAVBAR ================= */}
-      <nav className={`navbar-bottom ${hideNav ? "hide" : ""}`}>
-        <div className="navbar-bottom-inner">
+        {/* Center: Nav Links (desktop only) */}
+        <div className="navbar-center">
           <Link to="/">Home</Link>
           <Link to="/menu">Menu</Link>
           <Link to="/about">About</Link>
           <Link to="/delivery">Delivery</Link>
           <Link to="/privacy">Privacy</Link>
+        </div>
 
+        {/* Right: Search, Cart, Login, Hamburger */}
+        <div className="navbar-right">
           <span
             className="search-icon"
             onClick={() => setShowSearch(!showSearch)}
           >
             🔍
           </span>
+
+          <Link to="/cart" className={`cart-btn ${bounce ? "bounce" : ""}`}>
+            <img src={assets.basket_icon} alt="Cart" />
+            {totalItems > 0 && <span className="cart-count">{totalItems}</span>}
+          </Link>
+
+          {/* Login button (desktop only) */}
+          <Link to="/login" className="login-btn">
+            Login
+          </Link>
+
+          {/* Hamburger (mobile only) */}
+          <div
+            className="hamburger"
+            onClick={() => setOpenHamburger(!openHamburger)}
+          >
+            ☰
+          </div>
         </div>
 
+        {/* Search form */}
         {showSearch && (
           <form className="navbar-search" onSubmit={handleSearch}>
             <input
@@ -116,6 +105,19 @@ const Navbar = () => {
             />
             <button type="submit">Go</button>
           </form>
+        )}
+
+        {/* Hamburger menu */}
+        {openHamburger && (
+          <div className="hamburger-menu">
+            <Link to="/" onClick={() => setOpenHamburger(false)}>Home</Link>
+            <Link to="/menu" onClick={() => setOpenHamburger(false)}>Menu</Link>
+            <Link to="/about" onClick={() => setOpenHamburger(false)}>About</Link>
+            <Link to="/delivery" onClick={() => setOpenHamburger(false)}>Delivery</Link>
+            <Link to="/privacy" onClick={() => setOpenHamburger(false)}>Privacy</Link>
+            <Link to="/login" onClick={() => setOpenHamburger(false)}>Login</Link>
+            <Link to="/cart" onClick={() => setOpenHamburger(false)}>Cart ({totalItems})</Link>
+          </div>
         )}
       </nav>
     </>

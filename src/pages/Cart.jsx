@@ -5,12 +5,31 @@ import "./Cart.css";
 import Footer from "./Footer";
 
 const Cart = () => {
-  const { cartItems, removeFromCart, updateQuantity, getTotal } = useContext(CartContext);
+  const { cartItems, removeFromCart, updateQuantity, getTotal, getTotalItems } = useContext(CartContext);
   const navigate = useNavigate();
+
+  const MAX_ITEMS = 10;
 
   const handleProceedToCheckout = () => {
     if (cartItems.length === 0) return;
     navigate("/place-order", { state: { cartItems } });
+  };
+
+  const handleUpdateQuantity = (itemId, change) => {
+    const currentTotalItems = getTotalItems(); // total quantity in cart
+    const item = cartItems.find((i) => i._id === itemId);
+    const newItemQuantity = item.quantity + change;
+
+    // Prevent negative quantity
+    if (newItemQuantity < 1) return;
+
+    // Prevent exceeding max items
+    if (currentTotalItems + change > MAX_ITEMS) {
+      alert(`You can only have a maximum of ${MAX_ITEMS} items in your cart.`);
+      return;
+    }
+
+    updateQuantity(itemId, change);
   };
 
   return (
@@ -29,9 +48,9 @@ const Cart = () => {
                 <h3>{item.name}</h3>
                 <p>{item.description}</p>
                 <div className="cart-quantity">
-                  <button onClick={() => updateQuantity(item._id, -1)}>-</button>
+                  <button onClick={() => handleUpdateQuantity(item._id, -1)}>-</button>
                   <span>{item.quantity}</span>
-                  <button onClick={() => updateQuantity(item._id, 1)}>+</button>
+                  <button onClick={() => handleUpdateQuantity(item._id, 1)}>+</button>
                   <button onClick={() => removeFromCart(item._id)}>Remove</button>
                 </div>
               </div>

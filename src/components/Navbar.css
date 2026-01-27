@@ -1,28 +1,94 @@
-/* ================= TOP NAVBAR ================= */
-.navbar-top {
-  position: fixed;
+/* ================= SINGLE NAVBAR ================= */
+.navbar {
+  position: relative;
   top: 0;
   width: 100%;
   height: 70px;
   background: #fff;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   padding: 0 20px;
   z-index: 1000;
   box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  transition: top 0.3s ease;
 }
 
-.navbar-logo img {
+.navbar.hide {
+  top: -80px; /* hide navbar on scroll down */
+}
+
+/* Left: Logo */
+.navbar-left img {
   height: 45px;
 }
 
-.navbar-actions {
+/* Center: Nav links (desktop only) */
+.navbar-center {
+  display: flex;
+  gap: 25px;
+}
+
+.navbar-center a {
+  text-decoration: none;
+  color: #f44336;
+  font-weight: bold;
+  white-space: nowrap;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.navbar-center a:hover {
+  color: #ff6347;
+  transform: scale(1.1);
+}
+
+/* Right section */
+.navbar-right {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
+/* Search icon */
+.search-icon {
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* Cart */
+.cart-btn {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #f44336;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+/* Bounce animation */
+@keyframes bounceAnim {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.3); }
+  50% { transform: scale(1); }
+  70% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.cart-btn.bounce {
+  animation: bounceAnim 0.3s ease;
+}
+
+/* Login button */
 .login-btn {
   padding: 8px 16px;
   background: #f02544;
@@ -32,11 +98,25 @@
   cursor: pointer;
 }
 
-.cart-btn img {
-  width: 26px;
+/* Search form */
+.navbar-search {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 15px;
 }
 
-/* Hamburger */
+.navbar-search input {
+  padding: 8px 12px;
+  width: 220px;
+}
+
+.navbar-search button {
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+/* Hamburger (mobile only) */
 .hamburger {
   display: none;
   font-size: 28px;
@@ -64,109 +144,22 @@
   font-weight: 600;
 }
 
-/* ================= SECOND NAVBAR ================= */
-.navbar-bottom {
-  position: relative; /* keeps navbar at top */
-  top: 70px; /* below top navbar */
-  /* width: 50% ; */
-  /* background: #fafafa; */
-  border-top: 1px solid #eee;
-  /* z-index: 900; */
-  transition: top 0.3s ease; /* smooth hide/show */
-
-}
-
-.navbar-bottom.hide {
-  top: 0; /* hides behind top navbar */
-}
-
-.navbar-bottom-inner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
-  padding: 12px 20px;
-  overflow-x: auto;
-}
-
-.navbar-bottom-inner a {
-  text-decoration: none;
-  color: #f44336;
-  font-weight: 500;
-  white-space: nowrap;
-  font-weight: bold;
-}
-.navbar-bottom-inner a:hover {
-  color: #ff6347;         /* slightly darker tomato on hover */
-  transform: scale(1.1);  /* slight grow effect */
-}
-.search-icon {
-  cursor: pointer;
-  font-size: 18px;
-}
-
-/* Search bar */
-.navbar-search {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px 15px;
-}
-
-.navbar-search input {
-  padding: 8px 12px;
-  width: 220px;
-}
-
-.navbar-search button {
-  padding: 8px 14px;
-  cursor: pointer;
-}
-
-/* Cart Button */
-.cart-btn {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.cart-count {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background-color: #f44336; /* red circle */
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-  padding: 2px 6px;
-  border-radius: 50%;
-}
-
-/* Bounce animation */
-@keyframes bounceAnim {
-  0% { transform: scale(1); }
-  30% { transform: scale(1.3); }
-  50% { transform: scale(1); }
-  70% { transform: scale(1.2); }
-  100% { transform: scale(1); }
-}
-
-.cart-btn.bounce {
-  animation: bounceAnim 0.3s ease;
-}
-
 /* ================= RESPONSIVE ================= */
 @media (max-width: 992px) {
-  .navbar-actions {
+  /* Hide desktop links and login */
+  .navbar-center,
+  .login-btn {
     display: none;
   }
 
+  /* Show hamburger */
   .hamburger {
     display: block;
   }
+}
 
-  .navbar-bottom-inner {
-    justify-content: flex-start;
+@media (max-width: 768px) {
+  .navbar-search input {
+    width: 150px; /* smaller search input on mobile */
   }
 }
