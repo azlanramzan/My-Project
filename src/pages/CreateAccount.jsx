@@ -24,7 +24,7 @@ const CreateAccount = () => {
     if (!formData.firstName) newErrors.firstName = "First Name is required";
     if (!formData.lastName) newErrors.lastName = "Last Name is required";
     if (!formData.email) newErrors.email = "Email is required";
-    if (!formData.phone) newErrors.phone = "Phone Number is required";
+    // if (!formData.phone) newErrors.phone = "Phone Number is required";
     if (!formData.password) newErrors.password = "Password is required";
     if (formData.password !== formData.confirmPassword)
       newErrors.confirmPassword = "Passwords do not match";
@@ -54,7 +54,7 @@ const CreateAccount = () => {
         firstName: "",
         lastName: "",
         email: "",
-        phone: "",
+        // phone: "",
         password: "",
         confirmPassword: "",
       });
@@ -73,7 +73,7 @@ const CreateAccount = () => {
           { name: "firstName", type: "text", label: "First Name" },
           { name: "lastName", type: "text", label: "Last Name" },
           { name: "email", type: "email", label: "Email" },
-          { name: "phone", type: "tel", label: "Phone Number" },
+          // { name: "phone", type: "tel", label: "Phone Number" },
           { name: "password", type: "password", label: "Password" },
           { name: "confirmPassword", type: "password", label: "Confirm Password" },
         ].map((field) => (
