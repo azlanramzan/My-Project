@@ -19,3 +19,14 @@ body {
   padding-left: 20px;
   padding-right: 20px;
 }
+/* Global fix for blinking cursor */
+* {
+  user-select: none;
+  caret-color: transparent;
+}
+
+input,
+textarea {
+  user-select: text;
+  caret-color: auto;
+}
